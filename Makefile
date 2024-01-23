@@ -1,9 +1,18 @@
-FILES = ./srcs/main.c ./srcs/linked_list_utils.c ./srcs/parse_data.c ./srcs/utils.c ./srcs/bmp_write.c ./srcs/bmp_read.c ./srcs/encode.c ./srcs/decode.c
 FLAGS = -Wall -Wextra -Werror
 TARGET = BMP_converter
 CC = gcc
 
 OBJS = ${FILES:.c=.o}
+
+ifeq ($(OS), Windows_NT)
+	SHELL = cmd
+	REMOVEFILE = del
+	FILES = srcs\main.c srcs\linked_list_utils.c srcs\parse_data.c srcs\utils.c srcs\bmp_write.c srcs\bmp_read.c srcs\encode.c srcs\decode.c
+	TARGET := ${TARGET}.exe
+else
+	FILES = srcs/main.c srcs/linked_list_utils.c srcs/parse_data.c srcs/utils.c srcs/bmp_write.c srcs/bmp_read.c srcs/encode.c srcs/decode.c
+	REMOVEFILE = rm -rf
+endif
 
 ifeq (${DEBUG}, debug)
 	CCDEBUG = -fsanitize=address -g
@@ -28,11 +37,11 @@ prune:
 
 clean:
 	@echo "Deleting objs files"
-	@rm -f ${OBJS}
+	${REMOVEFILE} ${OBJS}
 
 fclean: clean
 	@echo "Deleting Executable"
-	@rm -f ${TARGET}
+	${REMOVEFILE} ${TARGET}
 
 re: fclean all
 
