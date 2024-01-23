@@ -55,7 +55,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-BMP_converter.exe
+BMP_converter
 *.txt
 *.bmp
 # End of https://www.toptal.com/developers/gitignore/api/c
