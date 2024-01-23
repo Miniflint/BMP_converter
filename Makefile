@@ -37,11 +37,11 @@ prune:
 
 clean:
 	@echo "Deleting objs files"
-	${REMOVEFILE} ${OBJS}
+	@${REMOVEFILE} ${OBJS}
 
 fclean: clean
 	@echo "Deleting Executable"
-	${REMOVEFILE} ${TARGET}
+	@${REMOVEFILE} ${TARGET}
 
 re: fclean all
 
